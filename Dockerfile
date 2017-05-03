@@ -9,14 +9,19 @@ RUN apt-get update \
     bmon \
     nmap \
     tcpdump \
-    iperf \
-    hping3 && \
-    apt-get clean && \
-    apt-get autoremove
+    iperf
 
 FROM alpine:3.5
 
-COPY --from=download /bin /bin
-COPY --from=download /usr/bin /usr/bin
+COPY --from=download  /usr/bin/bash /bin
+COPY --from=download  /usr/bin/nslookup /bin
+COPY --from=download  /usr/bin/dig /bin
+COPY --from=download  /usr/bin/curl /bin
+COPY --from=download  /bin/netcat /bin
+COPY --from=download  /usr/sbin/iftop /bin
+COPY --from=download  /usr/bin/bmon /bin
+COPY --from=download  /usr/bin/nmap /bin
+COPY --from=download  /usr/sbin/tcpdump /bin
+COPY --from=download  /usr/bin/iperf /bin
 
 CMD /bin/bash
