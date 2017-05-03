@@ -13,7 +13,7 @@ RUN apt-get update \
 
 FROM alpine:3.5
 
-COPY --from=download  /usr/bin/bash /bin
+COPY --from=download  /bin/bash /bin
 COPY --from=download  /usr/bin/nslookup /bin
 COPY --from=download  /usr/bin/dig /bin
 COPY --from=download  /usr/bin/curl /bin
