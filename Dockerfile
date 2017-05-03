@@ -11,3 +11,4 @@ RUN apk --no-cache --virtual .build-dependencies add \
     iperf && \
     apk del .build-dependencies
 
+CMD /bin/sh
