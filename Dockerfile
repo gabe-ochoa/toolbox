@@ -1,27 +1,13 @@
-FROM ubuntu as download
+FROM alpine:3.5
 
-RUN apt-get update \
-    && apt-get install -y \
-    dnsutils \
+RUN apk --no-cache --virtual .build-dependencies add \
+    bind-tools \
     curl \
-    netcat \
+    netcat-openbsd \
     iftop \
     bmon \
     nmap \
     tcpdump \
-    iperf
+    iperf && \
+    apk del .build-dependencies
 
-FROM alpine:3.5
-
-COPY --from=download  /bin/bash /bin
-COPY --from=download  /usr/bin/nslookup /bin
-COPY --from=download  /usr/bin/dig /bin
-COPY --from=download  /usr/bin/curl /bin
-COPY --from=download  /bin/netcat /bin
-COPY --from=download  /usr/sbin/iftop /bin
-COPY --from=download  /usr/bin/bmon /bin
-COPY --from=download  /usr/bin/nmap /bin
-COPY --from=download  /usr/sbin/tcpdump /bin
-COPY --from=download  /usr/bin/iperf /bin
-
-CMD /bin/bash
