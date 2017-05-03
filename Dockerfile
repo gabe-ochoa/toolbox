@@ -7,7 +7,6 @@ RUN apt-get update \
     netcat \
     iftop \
     bmon \
-    traceroute \
     nmap \
     tcpdump \
     iperf \
@@ -17,6 +16,7 @@ RUN apt-get update \
 
 FROM alpine:3.5
 
-COPY --from=download /bin /bin/downloaded
+COPY --from=download /bin /bin
+COPY --from=download /usr/bin /usr/bin
 
-CMD /bin/sh
+CMD /bin/bash
