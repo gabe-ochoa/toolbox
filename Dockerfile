@@ -9,6 +9,6 @@ RUN apk --no-cache --virtual .build-dependencies add \
     nmap \
     tcpdump \
     iperf && \
-    apk del .build-dependencies
+    rm -f /var/cache/apk/*
 
 CMD /bin/sh
