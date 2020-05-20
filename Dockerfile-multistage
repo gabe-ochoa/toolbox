@@ -11,7 +11,7 @@ RUN apt-get update \
     tcpdump \
     iperf
 
-FROM alpine:3.5
+FROM alpine:3.11
 
 COPY --from=download  /bin/bash /bin
 COPY --from=download  /usr/bin/nslookup /bin
